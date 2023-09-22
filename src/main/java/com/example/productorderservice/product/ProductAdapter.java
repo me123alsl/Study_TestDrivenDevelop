@@ -1,8 +1,10 @@
 package com.example.productorderservice.product;
 
-class ProductAdapter implements ProductPort {
+import org.springframework.stereotype.Component;
 
-  private ProductRepository productRepository;
+@Component
+class ProductAdapter implements ProductPort {
+  private final ProductRepository productRepository;
 
   public ProductAdapter(ProductRepository productRepository) {
     this.productRepository = productRepository;
