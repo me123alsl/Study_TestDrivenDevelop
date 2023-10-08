@@ -2,10 +2,6 @@ package com.example.productorderservice.product;
 
 
 import com.example.productorderservice.ApiTest;
-import io.restassured.RestAssured;
-import io.restassured.response.ExtractableResponse;
-import io.restassured.response.Response;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,16 +27,10 @@ public class ProductApiTest extends ApiTest {
         ProductSteps.상품등록요청(ProductSteps.상품등록_생성());
         long productId = 1L;
 
-        ExtractableResponse<Response> response = RestAssured.given().log().all()
-                .when()
-                .get("/products/{productId}", productId)
-                .then()
-                .log().all()
-                .extract();
+        final var response = ProductSteps.상품조회요청(productId);
 
         assertThat(response.statusCode()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.jsonPath().getString("name")).isEqualTo("상품명");
     }
-
 
 }
