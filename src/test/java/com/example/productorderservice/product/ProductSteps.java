@@ -16,7 +16,7 @@ public class ProductSteps {
                 .log().all().extract();
     }
 
-    public static AddProductRequest 상품등록_생성() {
+    public static AddProductRequest 상품등록요청_생성() {
         final String name = "상품명";
         final int price = 1000;
         final DiscountPolicy discountPolicy = DiscountPolicy.NONE;
@@ -31,5 +31,9 @@ public class ProductSteps {
                 .then()
                 .log().all()
                 .extract();
+    }
+
+    static UpdateProductRequest 상품수정요청_생성() {
+        return new UpdateProductRequest("상품 수정", 2000, DiscountPolicy.NONE);
     }
 }
