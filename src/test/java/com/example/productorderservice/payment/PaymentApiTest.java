@@ -6,10 +6,11 @@ import com.example.productorderservice.product.ProductSteps;
 import io.restassured.RestAssured;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PaymentApiTest extends ApiTest {
 
@@ -21,7 +22,7 @@ public class PaymentApiTest extends ApiTest {
 
         final var response = 주문결제요청(request);
 
-        Assertions.assertThat(response.statusCode()).isEqualTo(HttpStatus.OK.value());
+        assertThat(response.statusCode()).isEqualTo(HttpStatus.OK.value());
     }
 
     private static ExtractableResponse<Response> 주문결제요청(final PaymentRequest request) {

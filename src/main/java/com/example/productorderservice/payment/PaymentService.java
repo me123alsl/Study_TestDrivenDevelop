@@ -2,6 +2,7 @@ package com.example.productorderservice.payment;
 
 import com.example.productorderservice.order.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,8 +16,8 @@ class PaymentService {
         this.paymentPort = paymentPort;
     }
 
-
     @PostMapping("payments")
+    @Transactional
     public void payment(@RequestBody PaymentRequest request) {
         Order order = paymentPort.getOrder(request.orderId());
         final Payment payment = new Payment(order, request.cardNumber());
